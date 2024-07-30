@@ -1,0 +1,80 @@
+﻿@model TaskForm
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="w-100" style="max-width: 600px;">
+        <div class="card bg-secondary text-white border-dark">
+            <div class="card-body">
+                <h3 class="card-title text-center text-dark">Add New Task</h3>
+                <form asp-controller="NewTask" asp-action="AddNewTask" method="post">
+                    <div class="form-group">
+                        <label asp-for="TaskName" class="text-dark">Name:</label>
+                        <input asp-for="TaskName" type="text" class="form-control bg-dark text-white" id="TaskName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="TaskDescription" class="text-dark">Description:</label>
+                        <input asp-for="TaskDescription" type="text" class="form-control bg-dark text-white" id="TaskDescription">
+                        <span asp-validation-for="TaskDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DateFrom" class="text-dark">From:</label>
+                        <input asp-for="DateFrom" type="date" class="form-control bg-dark text-white" id="DateFrom" />
+                        <span asp-validation-for="DateFrom" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DateTo" class="text-dark">To:</label>
+                        <input asp-for="DateTo" class="form-control bg-dark text-white" type="date" id="DateTo" />
+                        <span asp-validation-for="DateTo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TaskPriorityCategoryId" class="text-dark">Priority:</label>
+                        <select asp-for="TaskPriorityCategoryId" asp-items="ViewBag.PriorityCategories" class="form-control bg-dark text-white">
+                            @foreach (var item in ViewBag.List)
+                            {
+                                <option value=@item.TaskPriorityCategoryId>@item.CategoryName</option>
+                            }
+                        </select>
+                        <span asp-validation-for="TaskPriorityCategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TaskStatus" class="text-dark">Status:</label>
+                        <input asp-for="TaskStatus" type="text" class="form-control bg-dark text-white">
+                        <span asp-validation-for="TaskStatus" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-outline-light float-right">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        background-color: #dddddd;
+    }
+
+    .card-body {
+        background-color: gray;
+    }
+
+    button {
+        color: white !important;
+        background-color: #000000 !important;
+        transition-duration: 0.5s;
+    }
+
+        button:hover {
+            background-color: #2c2c2c !important
+        }
+
+    body, html {
+        height: 100%;
+        width: 100%;
+        margin-bottom: 0px;
+    }
+
+    .pb-3 {
+        padding: 0px !important;
+    }
+
+</style>
