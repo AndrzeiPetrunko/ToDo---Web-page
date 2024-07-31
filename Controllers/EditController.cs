@@ -34,18 +34,24 @@ namespace ToDo.Controllers
         }
         public IActionResult EditTask(TaskForm t)
         {
-            var tasks = (from p in toDoDbContext.Tasks where p.TaskId == task_id select p).ToList();
-            foreach (var task in tasks)
+            if (t.TaskName != null && t.TaskStatus != null && t.TaskDescription != null && t.DateFrom != null && t.DateTo != null)
             {
-                task.TaskStatus = t.TaskStatus;
-                task.TaskName = t.TaskName;
-                task.TaskDescription = t.TaskDescription;
-                task.DateFrom = t.DateFrom;
-                task.DateTo = t.DateTo;
-                task.TaskPriorityCategoryId = t.TaskPriorityCategoryId;
+                var tasks = (from p in toDoDbContext.Tasks where p.TaskId == task_id select p).ToList();
+                foreach (var task in tasks)
+                {
+                    task.TaskStatus = t.TaskStatus;
+                    task.TaskName = t.TaskName;
+                    task.TaskDescription = t.TaskDescription;
+                    task.DateFrom = t.DateFrom;
+                    task.DateTo = t.DateTo;
+                    task.TaskPriorityCategoryId = t.TaskPriorityCategoryId;
+                }
+                toDoDbContext.SaveChanges();
+                return RedirectToAction("Index", "Main");
             }
-            toDoDbContext.SaveChanges();
-            return RedirectToAction("Index", "Main");
+            TempData["AlertMessage"] = "Fill all the fields below !!!";
+            return RedirectToAction("Index", "Edit");
+            
         }
     }
 }

@@ -20,8 +20,8 @@ namespace ToDo.Controllers
         {
             var tasks = _toDoRepository.GetAllTasksById(user_id);
             var user = _toDoRepository.GetUserData(user_id);
-            ViewBag.FirstName = user.FirstName;
-            ViewBag.LastName = user.LastName;
+            ViewBag.FullName = user.FirstName + " " + user.LastName;
+            
             
             var tasksModel = tasks.Select(t => new TasksModel()
             {

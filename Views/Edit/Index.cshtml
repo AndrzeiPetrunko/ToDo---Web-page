@@ -1,4 +1,10 @@
 ﻿@model TaskForm
+@if (TempData["AlertMessage"] != null)
+{
+    <script>
+        alert('@TempData["AlertMessage"]');
+    </script>
+}
 <div class="d-flex justify-content-center align-items-center vh-100 bg-light">
     <div class="w-100" style="max-width: 600px;">
         <div class="card bg-secondary text-white border-dark">
