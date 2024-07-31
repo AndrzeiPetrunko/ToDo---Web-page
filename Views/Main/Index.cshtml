@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<TasksModel>
 @{
-    ViewData["Title"] = "Tasks List";
+    ViewData["Title"] = "Task List";
 }
 <header class="bg-dark text-white p-3">
     <h2>Welcome, @ViewBag.FirstName @ViewBag.LastName</h2>
 </header>
 <div class="container mt-4">
-    <h1 class="text-center mb-4">Tasks List</h1>
+    <h1 class="text-center mb-4">Task List</h1>
     @if (Model.Any())
     {
         <div class="table-responsive">
@@ -36,6 +36,7 @@
                             <td>@item.TaskStatus</td>
                             <td>
                                 <p>@Html.ActionLink("Delete", "DeleteTask", "Main", new { Id = @item.TaskId }, new { @class = "btn btn-outline-danger" })</p>
+                                <p>@Html.ActionLink("Edit", "EditTask", "Main", new { Id = @item.TaskId }, new { @class = "btn btn-outline-danger" })</p>
                             </td>
                         </tr>
                     }

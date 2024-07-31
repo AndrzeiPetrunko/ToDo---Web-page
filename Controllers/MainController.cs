@@ -45,5 +45,11 @@ namespace ToDo.Controllers
             _toDoRepository.DeleteTask(id);
             return RedirectToAction("Index","Main");
         }
+        public IActionResult EditTask(int id)
+        {
+            Console.WriteLine(id);
+            EditController.task_id = id;
+            return RedirectToAction("Index", "Edit");
+        }
     }
 }

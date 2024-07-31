@@ -22,6 +22,7 @@ namespace ToDo.Controllers
                 MainController.user_id = user.Username;
                 return RedirectToAction("Index", "Main");
             }
+
             return View();
         }
         [HttpGet]
