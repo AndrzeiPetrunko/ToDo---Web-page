@@ -2,6 +2,12 @@
 @{
     ViewData["Title"] = "Login Page";
 }
+@if (TempData["AlertMessage"] != null)
+{
+    <script>
+        alert('@TempData["AlertMessage"]');
+    </script>
+}
 <div class="d-flex justify-content-center align-items-center vh-100" id="div">
     <div class="w-100" style="max-width: 400px;">
         <div class="card">

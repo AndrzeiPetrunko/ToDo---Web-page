@@ -16,14 +16,20 @@ namespace ToDo.Controllers
         
         public IActionResult Login(UserLoginModel userLoginModel)
         {
-            User user = _context.Users.FirstOrDefault(x => x.Username == userLoginModel.Username);
-            if (user != null && user.Password == userLoginModel.Password)
+            if (userLoginModel.Username != null && userLoginModel.Password != null)
             {
-                MainController.user_id = user.Username;
-                return RedirectToAction("Index", "Main");
+                User user = _context.Users.FirstOrDefault(x => x.Username == userLoginModel.Username);
+                if (user != null && user.Password == userLoginModel.Password)
+                {
+                    MainController.user_id = user.Username;
+                    return RedirectToAction("Index", "Main");
+                }
+                TempData["AlertMessage"] = "Wrong login data!";
+                return View();
             }
-
+            TempData["AlertMessage"] = "All fields must be filled";
             return View();
+            
         }
         [HttpGet]
         public IActionResult Signup(UserSignupModel userSignupModel)
