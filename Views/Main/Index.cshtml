@@ -1,15 +1,17 @@
 ﻿@model IEnumerable<TasksModel>
 @{
+    var sortedModel = Model.OrderBy(p => p.TaskPriorityCategoryId);
+} 
+@{
     ViewData["Title"] = "Task List";
 }
-
 <header class="bg-dark text-white p-3">
     <h2>Welcome, @ViewBag.FullName</h2>
 
 </header>
 <div class="container mt-4">
     <h1 class="text-center mb-4">Task List</h1>
-    @if (Model.Any())
+    @if (sortedModel.Any())
     {
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
@@ -27,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in sortedModel)
                     {
                         <tr>
                             <td>@item.TaskName</td>

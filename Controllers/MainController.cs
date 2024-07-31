@@ -21,8 +21,6 @@ namespace ToDo.Controllers
             var tasks = _toDoRepository.GetAllTasksById(user_id);
             var user = _toDoRepository.GetUserData(user_id);
             ViewBag.FullName = user.FirstName + " " + user.LastName;
-            
-            
             var tasksModel = tasks.Select(t => new TasksModel()
             {
                 TaskId = t.TaskId,
@@ -34,6 +32,7 @@ namespace ToDo.Controllers
                 TaskPriorityCategoryId = t.TaskPriorityCategoryId,
                 CategoryName = _toDoRepository.GetCategoryById(t.TaskPriorityCategoryId),
             }).ToList();
+            
             return View(tasksModel);
         }
         public IActionResult Add()
